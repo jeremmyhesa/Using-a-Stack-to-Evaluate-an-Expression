@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+struct node{
+	char isi;
+	node *skip;
+};
+
+//
+class stack{
+  private:
+	node *head=NULL;
+	
+  public:
+	bool isEmpty(){
+		if(head==NULL)
+			return true;
+		return false;
+		}
+//		
+	void pushtostack(char a){
+		node *baru=new node;
+		baru->isi=a;
+		baru->skip=NULL;
+		if(isEmpty()){
+			head=baru;
+		}
+		
+		else{
+			baru->skip=head;
+			head=baru;
+		}
+	}
