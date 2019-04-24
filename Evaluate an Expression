@@ -31,3 +31,33 @@ class stack{
 			head=baru;
 		}
 	}
+	char popfromstack(){
+		if(isEmpty()){
+			cout<<"Stack kosong!"<<endl;
+			return 0;
+		}
+      		else{
+			char ch=head->isi;
+			node *tmp=head->skip;
+			delete head;
+			head=tmp;
+			return ch;
+		}
+	}
+//	
+    	char top(){
+		return head->isi;
+	}	
+    	void cetak(){
+      		if(isEmpty()){
+			cout<<"Stack Kosong!";
+		}
+      		else{
+			node *bantu=head;
+			while(bantu!=NULL){
+			cout<<bantu->isi<<endl;
+			bantu=bantu->skip;
+			}
+		}
+	}    
+};
