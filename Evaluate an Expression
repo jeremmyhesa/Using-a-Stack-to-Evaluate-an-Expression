@@ -61,3 +61,48 @@ class stack{
 		}
 	}    
 };
+
+int cek(char cekoprtr){	
+	if(cekoprtr=='*'||cekoprtr=='/')
+		return 2;
+	else
+		return 1;
+}
+
+//
+int main(){
+	stack S;
+	int i=0,n=0,A,B,C;
+	char postfix[20];
+	char infix[20];
+  
+	cin>>infix;
+	while(infix[i]!='\0'){
+		if(isdigit(infix[i])){
+			postfix[n]=infix[i];
+			n++;
+		}
+		else if(infix[i]=='('){
+			S.pushtostack(infix[i]);
+		}
+		else if(infix[i]==')'){
+			while(!S.isEmpty() && S.top()!='('){
+				postfix[n]=S.popfromstack();
+				n++;
+			}
+			S.popfromstack();
+		}
+		else{
+			if(S.isEmpty() || S.top()=='('){
+				S.pushtostack(infix[i]);
+			}
+			else{
+				while(!S.isEmpty() && S.top()!='(' && cek(infix[i])<=cek(S.top())){
+					postfix[n]=S.popfromstack();
+					n++;
+				}
+				S.pushtostack(infix[i]);
+			}
+		}
+		i++;
+	}
